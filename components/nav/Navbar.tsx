@@ -1,16 +1,26 @@
 import React from "react";
-import { AlignJustifyIcon, Search, } from "lucide-react";
+import {
+  Search,
+  PersonStandingIcon,
+  BellIcon,
+  UserIcon,
+  Menu,
+} from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="h-screen w-screen  bg-gray-100">
+    <div className=" fixed top-0 h-screen w-screen  bg-gray-100">
       <div className="flex h-16 w-full items-center justify-between pl-20 pr-20">
         <div className="flex">
           <MenuIcon />
           <SearchComponent />
         </div>
         <Badge />
-        <Badge />
+        <div className=" flex w-64 items-center justify-around">
+          <Bell />
+          <Cupcake />
+          <User />
+        </div>
       </div>
     </div>
   );
@@ -21,14 +31,14 @@ export default Navbar;
 function MenuIcon() {
   return (
     <div className=" mr-5 rounded-lg bg-white p-2 shadow-md">
-      <AlignJustifyIcon />
+      <Menu />
     </div>
   );
 }
 function SearchComponent() {
   return (
     <>
-      <div className=" flex min-w-fit items-center rounded-md bg-white pr-1   shadow-md shadow-md outline-none focus:outline-none">
+      <div className=" flex min-w-fit items-center rounded-md bg-white pr-1    shadow-md outline-none focus:outline-none">
         <input type="text" className=" mr-2   rounded-md border-none pr-2" />
         <div className=" cursor-pointer rounded-lg bg-black  p-1">
           <Search color={"white"} />
@@ -52,12 +62,33 @@ function Badge() {
     </>
   );
 }
-function User() {}
-function Bell() {}
-function Cupcake() {
-  
+function User() {
+  return (
+    <Icon>
+      <div className="flex w-20 items-center justify-between p-1">
+        <img src="/psg.png" alt="" className="h-5 w-5 rounded-md" />{" "}
+        <p className=" p-.5 font-bold">Abdul</p>
+      </div>
+    </Icon>
+  );
 }
 
-function Icon(children: JSX.Element) {
-  return <div className=" bg-white p-2 shadow-md">{children}</div>;
+function Bell() {
+  return (
+    <Icon>
+      <BellIcon />
+    </Icon>
+  );
+}
+
+function Cupcake() {
+  return (
+    <Icon>
+      <PersonStandingIcon />
+    </Icon>
+  );
+}
+
+function Icon({ children }: { children: React.ReactNode }) {
+  return <div className=" rounded-lg bg-white p-2 shadow-md">{children}</div>;
 }
