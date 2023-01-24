@@ -1,25 +1,25 @@
-import React from "react";
+import { WidthContext } from "@/lib/context/useContext";
+import { useContext } from "react";
 import {
-  Search,
-  PersonStandingIcon,
-  BellIcon,
-  UserIcon,
-  Menu,
-} from "lucide-react";
-
+  AiOutlineSearch,
+  AiOutlineBell,
+  AiOutlineMenu,
+  AiOutlineUser,
+} from "react-icons/ai";
+import { GiHypersonicBolt } from "react-icons/gi";
 const Navbar = () => {
   return (
-    <div className=" fixed top-0 h-screen w-screen  bg-gray-100">
-      <div className="flex h-16 w-full items-center justify-between pl-20 pr-20">
+    <div className="   fixed top-0 h-screen w-screen  bg-gray-100">
+      <div className="flex h-16 w-full items-center justify-between pl-28 pr-20">
         <div className="flex">
           <MenuIcon />
           <SearchComponent />
         </div>
         <Badge />
         <div className=" flex w-64 items-center justify-around">
-          <Bell />
-          <Cupcake />
-          <User />
+          <Icon PropIcon={<AiOutlineBell size={24} />} />
+          <Icon PropIcon={<GiHypersonicBolt size={24} />} />
+          <Icon PropIcon={<AiOutlineUser size={24} />} />
         </div>
       </div>
     </div>
@@ -29,9 +29,13 @@ const Navbar = () => {
 export default Navbar;
 
 function MenuIcon() {
+  const { setIsExpanded, isExpanded } = useContext(WidthContext);
   return (
-    <div className=" mr-5 rounded-lg bg-white p-2 shadow-md">
-      <Menu />
+    <div
+      onClick={() => setIsExpanded(!isExpanded)}
+      className={`transition 1s ease-in-out mr-5 cursor-pointer rounded-lg bg-${!isExpanded?'white':'black'} p-2 shadow-md transition 1s ease-in-out`}
+    >
+      <AiOutlineMenu size={22} color={`${isExpanded ? "white" : "black"}`} />
     </div>
   );
 }
@@ -41,7 +45,7 @@ function SearchComponent() {
       <div className=" flex min-w-fit items-center rounded-md bg-white pr-1    shadow-md outline-none focus:outline-none">
         <input type="text" className=" mr-2   rounded-md border-none pr-2" />
         <div className=" cursor-pointer rounded-lg bg-black  p-1">
-          <Search color={"white"} />
+          <AiOutlineSearch size={20} color={"white"} />
         </div>
       </div>
     </>
@@ -62,33 +66,7 @@ function Badge() {
     </>
   );
 }
-function User() {
-  return (
-    <Icon>
-      <div className="flex w-20 items-center justify-between p-1">
-        <img src="/psg.png" alt="" className="h-5 w-5 rounded-md" />{" "}
-        <p className=" p-.5 font-bold">Abdul</p>
-      </div>
-    </Icon>
-  );
-}
 
-function Bell() {
-  return (
-    <Icon>
-      <BellIcon />
-    </Icon>
-  );
-}
-
-function Cupcake() {
-  return (
-    <Icon>
-      <PersonStandingIcon />
-    </Icon>
-  );
-}
-
-function Icon({ children }: { children: React.ReactNode }) {
-  return <div className=" rounded-lg bg-white p-2 shadow-md">{children}</div>;
+function Icon({ PropIcon }: { PropIcon: JSX.Element }) {
+  return <div className=" transition 1s ease-in-out rounded-lg bg-white p-2 shadow-md">{PropIcon}</div>;
 }

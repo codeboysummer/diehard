@@ -1,4 +1,5 @@
 import Navbar from "../nav/Navbar";
+import SideNav from "../nav/SideNav";
 
 interface Props {
   children: React.ReactNode;
@@ -7,9 +8,12 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   return <>
   <Navbar/>
+  <SideNav/>
+  {children}
   
   
-  {children}</>;
+  
+  </>;
 };
 
 export default Layout;
