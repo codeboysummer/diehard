@@ -4,9 +4,10 @@ import { useContext } from "react";
 import { motion } from "framer-motion";
 import { AiFillHome } from "react-icons/ai";
 import { FiDribbble, FiGitlab, FiZap } from "react-icons/fi";
+import Tooltip from "../shared/tooltip";
 
 const SideNav = () => {
-  const { isExpanded } = useContext(WidthContext);
+  const { isExpanded,setIsExpanded } = useContext(WidthContext);
   const [width, setWidth] = useState(isExpanded ? 96 : 20);
 
   const sidebarData = [
@@ -22,6 +23,8 @@ const SideNav = () => {
 
   return (
     <motion.div
+    
+   
       initial={{ width: 14 }}
       animate={{ width: width }}
       transition={{ duration: 0.5, ease: "easeInOut" }}

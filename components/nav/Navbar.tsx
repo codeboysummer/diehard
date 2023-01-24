@@ -55,18 +55,20 @@ function SearchComponent() {
 function Badge() {
   return (
     <>
-      <div className=" p-.5 flex h-12 w-40  items-center  justify-around rounded-2xl bg-white shadow-md">
-        <img
-          className=" border-black-10px h-10 w-10 rounded-full"
-          src="/psg.png"
-          alt="hr"
-        />
-        <p className="  font-inter font-bold">PSG</p>
+      <div className="group">
+        <div className=" transition-all 1s ease-in-out p-.5 flex h-12 w-40  items-center  justify-around rounded-2xl bg-white shadow-md  group-hover:bg-black">
+          <img
+            className=" border-black-10px h-10 w-10 rounded-full"
+            src="/psg.png"
+            alt="hr"
+          />
+          <p className="group-hover:text-white  font-inter font-bold">PSG</p>
+        </div>
       </div>
     </>
   );
 }
 
 function Icon({ PropIcon }: { PropIcon: JSX.Element }) {
-  return <div className=" transition 1s ease-in-out rounded-lg bg-white p-2 shadow-md">{PropIcon}</div>;
+  return <div className=" cursor-pointer transition 1s ease-in-out rounded-lg bg-white p-2 shadow-md">{PropIcon}</div>;
 }

@@ -8,6 +8,7 @@ import cx from "classnames";
 import localFont from "@next/font/local";
 import { Inter } from "@next/font/google";
 import WidthProvider from "@/lib/context/useContext";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const sfPro = localFont({
   src: "../styles/SF-Pro-Display-Medium.otf",
@@ -24,15 +25,17 @@ export default function MyApp({
   pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) {
   return (
-    <WidthProvider>
-      <SessionProvider session={session}>
-        <RWBProvider>
-          <main className={cx(sfPro.variable, inter.variable)}>
-            <Component {...pageProps} />
-          </main>
-        </RWBProvider>
-        <Analytics />
-      </SessionProvider>
-    </WidthProvider>
+    <ChakraProvider>
+      <WidthProvider>
+        <SessionProvider session={session}>
+          <RWBProvider>
+            <main className={cx(sfPro.variable, inter.variable)}>
+              <Component {...pageProps} />
+            </main>
+          </RWBProvider>
+          <Analytics />
+        </SessionProvider>
+      </WidthProvider>
+    </ChakraProvider>
   );
 }
