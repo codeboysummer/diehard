@@ -9,8 +9,8 @@ import {
 import { GiHypersonicBolt } from "react-icons/gi";
 const Navbar = () => {
   return (
-    <div className="   fixed top-0 h-screen w-screen  bg-gray-100">
-      <div className="flex h-16 w-full items-center justify-between pl-28 pr-20">
+    <>
+      <div className=" fixed flex h-16 w-full items-center justify-between pl-28 pr-20">
         <div className="flex">
           <MenuIcon />
           <SearchComponent />
@@ -22,7 +22,7 @@ const Navbar = () => {
           <Icon PropIcon={<AiOutlineUser size={24} />} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -33,7 +33,9 @@ function MenuIcon() {
   return (
     <div
       onClick={() => setIsExpanded(!isExpanded)}
-      className={`transition 1s ease-in-out mr-5 cursor-pointer rounded-lg bg-${!isExpanded?'white':'black'} p-2 shadow-md transition 1s ease-in-out`}
+      className={`1s mr-5 cursor-pointer rounded-lg transition ease-in-out bg-${
+        !isExpanded ? "white" : "black"
+      } 1s p-2 shadow-md transition ease-in-out`}
     >
       <AiOutlineMenu size={22} color={`${isExpanded ? "white" : "black"}`} />
     </div>
@@ -56,13 +58,13 @@ function Badge() {
   return (
     <>
       <div className="group">
-        <div className=" transition-all 1s ease-in-out p-.5 flex h-12 w-40  items-center  justify-around rounded-2xl bg-white shadow-md  group-hover:bg-black">
+        <div className=" 1s p-.5 flex h-12 w-40 items-center justify-around  rounded-2xl  bg-white shadow-md transition-all ease-in-out  group-hover:bg-black">
           <img
             className=" border-black-10px h-10 w-10 rounded-full"
             src="/psg.png"
             alt="hr"
           />
-          <p className="group-hover:text-white  font-inter font-bold">PSG</p>
+          <p className="font-inter  font-bold group-hover:text-white">PSG</p>
         </div>
       </div>
     </>
@@ -70,5 +72,9 @@ function Badge() {
 }
 
 function Icon({ PropIcon }: { PropIcon: JSX.Element }) {
-  return <div className=" cursor-pointer transition 1s ease-in-out rounded-lg bg-white p-2 shadow-md">{PropIcon}</div>;
+  return (
+    <div className=" 1s cursor-pointer rounded-lg bg-white p-2 shadow-md transition ease-in-out">
+      {PropIcon}
+    </div>
+  );
 }

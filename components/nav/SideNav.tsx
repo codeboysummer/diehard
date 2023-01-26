@@ -7,7 +7,7 @@ import { FiDribbble, FiGitlab, FiZap } from "react-icons/fi";
 import Tooltip from "../shared/tooltip";
 
 const SideNav = () => {
-  const { isExpanded,setIsExpanded } = useContext(WidthContext);
+  const { isExpanded, setIsExpanded } = useContext(WidthContext);
   const [width, setWidth] = useState(isExpanded ? 96 : 20);
 
   const sidebarData = [
@@ -18,20 +18,18 @@ const SideNav = () => {
   ];
 
   useEffect(() => {
-    setWidth(isExpanded ? 300 : 50);
+    setWidth(isExpanded ? 300 : 60);
   }, [isExpanded]);
 
   return (
     <motion.div
-    
-   
-      initial={{ width: 14 }}
+      initial={{ width: 60 }}
       animate={{ width: width }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className=" fixed  left-0 m-3 mt-20 flex h-5/6 flex-col justify-around   rounded-xl  bg-white pt-6 pb-2 shadow-md"
+      className=" fixed  left-0 ml-5 mt-20 flex h-5/6 flex-col justify-around   rounded-xl  bg-white  pt-6 pb-2 shadow-md"
     >
       {sidebarData.map((item, index) => (
-        <SidebarItem key={item.text} text={item.text} icon={item.icon} />
+        <SidebarItem key={index} text={item.text} icon={item.icon} />
       ))}
     </motion.div>
   );
@@ -43,7 +41,7 @@ function SidebarItem({ icon, text }: { icon: JSX.Element; text: string }) {
   const { isExpanded } = useContext(WidthContext);
   const [margin, setmargin] = useState(0);
   useEffect(() => {
-    setmargin(isExpanded ? 40 : 0);
+    setmargin(isExpanded ? 40 : 7);
   }, [isExpanded]);
 
   return (
@@ -51,12 +49,22 @@ function SidebarItem({ icon, text }: { icon: JSX.Element; text: string }) {
       initial={{ margin: margin }}
       animate={{ margin: margin }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={`${
-        isExpanded ? "m-10" : "m-0"
-      } flex h-12  w-full items-center transition-all 2s ease-in-out justify-around rounded-xl bg-[#3ca9e9] hover:bg-black`}
+      className={`${isExpanded ? "m-10" : "m-1.5"}  ${
+        !isExpanded ? "pl-3.5" : "p-3"
+      } 2s flex  h-12 ${
+        isExpanded ? "w-full" : "w-12"
+      } items-center justify-items-start rounded-xl  bg-[#3ca9e9] transition-all ease-in-out hover:bg-black`}
     >
       {icon}
-      {isExpanded && <p className="  font-bold   text-white ">{text}</p>}
+      {isExpanded && (
+        <p
+          className={` ${
+            isExpanded ? "pl-10" : "p-0"
+          }  font-bold   text-white `}
+        >
+          {text}
+        </p>
+      )}
     </motion.div>
   );
 }
